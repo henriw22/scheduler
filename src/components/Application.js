@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import "components/Application.scss";
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 const axios = require('axios');
 
@@ -73,11 +73,13 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     // you may put the line below, but will have to remove/comment hardcoded appointments variable
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   // const dailyAppointments = [];
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const setDay = day => setState({ ...state, day });
 
@@ -97,7 +99,7 @@ export default function Application(props) {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, [])
-  // console.log('appointments: ', state.appointments);
+  console.log('interviewers: ', state.interviewers);
 
 
   return (
@@ -126,13 +128,17 @@ export default function Application(props) {
       <section className="schedule">
         {
           dailyAppointments.map((appointment) => {
+            const interview = getInterview(state, appointment.interview);
+            
+            console.log('interview: ', interview);
             return (
               <Appointment
                 key={appointment.id}
-                // id={appointment.id}
-                // time={appointment.time}
-                // interview={appointment.interview}
-                {...appointment} 
+                id={appointment.id}
+                time={appointment.time}
+                interview={interview}
+                interviewers={dailyInterviewers}
+                // {...appointment} 
               />
             )
           })
