@@ -63,7 +63,7 @@ const axios = require('axios');
 //     id: 5,
 //     time: "4pm",
 //   }
-// ];
+// ];s
 
 
 export default function Application(props) {
@@ -77,6 +77,47 @@ export default function Application(props) {
     interviewers: {}
   });
 
+
+  function bookInterview(id, interview) {
+    console.log('book interview: ', id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    // setState({ ...state, appointments });
+
+    return axios.put(`api/appointments/${id}`, appointment)
+      .then(res => {
+        console.log('respond: ', res);
+        setState({ ...state, appointments });
+      })
+      // .catch(err => console.log(err));
+  }
+
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    // setState({ ...state, appointments })
+
+    return axios.delete(`api/appointments/${id}`)
+      .then(res => {
+        console.log('respond: ', res);
+        setState({ ...state, appointments });
+      })
+      // .catch(err => console.log(err));
+  }
+
   // const dailyAppointments = [];
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
@@ -86,9 +127,9 @@ export default function Application(props) {
   // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
-    const days = "http://localhost:8001/api/days";
-    const appointments = "http://localhost:8001/api/appointments";
-    const interviewers = "http://localhost:8001/api/interviewers";
+    const days = "api/days";
+    const appointments = "api/appointments";
+    const interviewers = "api/interviewers";
     Promise.all([
       axios.get(days),
       axios.get(appointments),
@@ -138,11 +179,14 @@ export default function Application(props) {
                 time={appointment.time}
                 interview={interview}
                 interviewers={dailyInterviewers}
+                bookInterview={bookInterview}
+                cancelInterview={cancelInterview}
                 // {...appointment} 
               />
             )
           })
         }
+        <Appointment id="last" time="5pm" />
       </section>
     </main>
   );

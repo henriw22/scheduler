@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
-export default function Confirm(props) {
+export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
+  console.log("form tesst: ", interviewer, props.interviewers)
   const reset = () => {
     setName("");
     setInterviewer(null);
