@@ -29,17 +29,15 @@ export default function Appointment(props) {
   console.log('props = ', props);
 
   function save(name, interviewer) {
-    if(name && interviewer) {
-      const interview = {
-        student: name,
-        interviewer
-      };
-      transition(SAVING, true);
-      props.bookInterview(props.id, interview)
-      .then(() => transition(SHOW))
-      .catch(err => transition(ERROR_SAVE, true))
-      // transition(SHOW)
-    }
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING, true);
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+    .catch(err => transition(ERROR_SAVE, true))
+    // transition(SHOW)
   }
   
   function onDelete () {

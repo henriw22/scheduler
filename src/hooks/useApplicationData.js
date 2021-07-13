@@ -50,7 +50,7 @@ export default function useApplicationData(props) {
       [id]: appointment
     };
     // setState({ ...state, appointments })
-
+    console.log('before = ', state.days[0].spots);
     return axios.delete(`api/appointments/${id}`)
       .then(res => {
         console.log('respond: ', res);
@@ -61,9 +61,10 @@ export default function useApplicationData(props) {
           return day;
         })
         setState({ ...state, appointments, days })
+        console.log('after = ', state.days[0].spots);
       })
       // .catch(err => console.log(err));
-  }
+    }
     
   const setDay = day => setState({ ...state, day });
 
