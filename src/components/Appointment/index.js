@@ -26,7 +26,7 @@ const ERROR_DELETE = "ERROR_DELETE";
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
   const { student, interviewer } = props.interview || {};
-  console.log('props = ', props);
+  // console.log('props = ', props);
 
   function save(name, interviewer) {
     const interview = {
@@ -57,13 +57,13 @@ export default function Appointment(props) {
   }
 
   return (
-    <div className="appointment">
+    <div className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           student={student}
-          interviewer={interviewer.name}
+          interviewer={interviewer}
           onDelete={onDelete}
           onEdit={onEdit}
         />

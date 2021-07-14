@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const axios = require('axios');
+import axios from "axios";
 
 export default function useApplicationData(props) {
   const [state, setState] = useState({
@@ -25,8 +25,8 @@ export default function useApplicationData(props) {
     };
 
     // setState({ ...state, appointments });
-
-    return axios.put(`api/appointments/${id}`, appointment)
+    console.log('before = ', state.days[0].spots);
+    return axios.put(`/api/appointments/${id}`, appointment)
       .then(res => {
         console.log('respond: ', res);
         const days = state.days.map((day) => {
@@ -36,9 +36,10 @@ export default function useApplicationData(props) {
           return day;
         })
         setState({ ...state, appointments, days })
+        console.log('after = ', state.days[0].spots);
       })
       // .catch(err => console.log(err));
-  }
+    }
 
   function cancelInterview(id) {
     const appointment = {
@@ -70,15 +71,15 @@ export default function useApplicationData(props) {
 
 
   useEffect(() => {
-    const days = "api/days";
-    const appointments = "api/appointments";
-    const interviewers = "api/interviewers";
+    const days = "/api/days";
+    const appointments = "/api/appointments";
+    const interviewers = "/api/interviewers";
     Promise.all([
       axios.get(days),
       axios.get(appointments),
       axios.get(interviewers)
     ]).then((all) => {
-      console.log('all: ', all[1].data);
+      // console.log('all: ', all[1].data);
       // set your states here with the correct values...
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
