@@ -36,10 +36,10 @@ Create a modern client application using the React view library.
 
 # Screenshots
 
-["Main Display"](https://github.com/henriw22/scheduler/blob/master/docs/Main%20Display.png?raw=true)
-["Creating Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Creating:Editing%20Appointment.png?raw=true)
-["Cancelling Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Deleting%20Appointment.png?raw=true)
-["Creating Appointment on a different day"](https://github.com/henriw22/scheduler/blob/master/docs/Creating%20Appointment%20on%20Different%20Day.png?raw=true)
+!["Main Display"](https://github.com/henriw22/scheduler/blob/master/docs/Main%20Display.png?raw=true)
+!["Creating Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Creating:Editing%20Appointment.png?raw=true)
+!["Cancelling Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Deleting%20Appointment.png?raw=true)
+!["Creating Appointment on a different day"](https://github.com/henriw22/scheduler/blob/master/docs/Creating%20Appointment%20on%20Different%20Day.png?raw=true)
 
 # Technical Specifications
 
