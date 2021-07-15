@@ -34,6 +34,12 @@ Create a modern client application using the React view library.
 * When the user presses the close button of the error they are returned to the Form or Show view (skipping Status and Confirm).
 * The application makes API requests to load and persist data. We do not lose data after a browser refresh.
 
+# Screenshots
+
+["Main Display"](https://github.com/henriw22/scheduler/blob/master/docs/Main%20Display.png?raw=true)
+["Creating Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Creating:Editing%20Appointment.png?raw=true)
+["Cancelling Appointment"](https://github.com/henriw22/scheduler/blob/master/docs/Deleting%20Appointment.png?raw=true)
+["Creating Appointment on a different day"](https://github.com/henriw22/scheduler/blob/master/docs/Creating%20Appointment%20on%20Different%20Day.png?raw=true)
 
 # Technical Specifications
 
