@@ -100,20 +100,17 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && (
         <Error 
           message="Could not delete appointment." 
-          onClose={() => back()} 
+          onClose={back} 
         />
       )}
       {mode === ERROR_SAVE && (
         <Error 
           message="Could not save appointment."
-          onClose={() => back()} 
+          onClose={back} 
           // onClose={() => transition(CREATE, true)} 
         />
       )}
 
-      {/* {props.interview ? 
-        <Show student={student} interviewer={interviewer.name} /> : 
-        <Empty />} */}
     </div>
   )
 }

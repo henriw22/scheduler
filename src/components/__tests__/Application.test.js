@@ -42,6 +42,12 @@ describe("Form", () => {
     const appointment =appointments[0];
     
     fireEvent.click(getByAltText(appointment, "Add"));
+
+    fireEvent.click(getByText(appointment, "Cancel"));
+
+    expect(getByAltText(appointment, "Add")).toBeInTheDocument();
+
+    fireEvent.click(getByAltText(appointment, "Add"));
     
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
@@ -81,6 +87,13 @@ describe("Form", () => {
     // 4. Check that the confirmation message is shown.
     expect(getByText(appointment, "Delete the appointment?")).toBeInTheDocument();
     
+    fireEvent.click(queryByText(appointment, "Cancel"));
+
+    expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
+
+    fireEvent.click(queryByAltText(appointment, "Delete"));
+
+    expect(getByText(appointment, "Delete the appointment?")).toBeInTheDocument();
     // 5. Click the "Confirm" button on the confirmation page.
     // fireEvent.click(getByText(appointment, "Confirm"));
     fireEvent.click(queryByText(appointment, "Confirm"));
@@ -113,6 +126,12 @@ describe("Form", () => {
           appointment => queryByText(appointment, "Archie Cohen")
         );
     
+        fireEvent.click(queryByAltText(appointment, "Edit"));
+
+        fireEvent.click(getByText(appointment, "Cancel"));
+
+        expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
+
         fireEvent.click(queryByAltText(appointment, "Edit"));
         
         fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
