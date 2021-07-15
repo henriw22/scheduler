@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -10,17 +10,6 @@ afterEach(cleanup);
 
 
 describe("Form", () => {
-  // it("renders without crashing", () => {
-  //   render(<Application />);
-  // });
-
-  // it("defaults to Monday and changes the schedule when a new day is selected", () => {
-  //   const { getByText} = render(<Application />);
-  //   return waitForElement(() => getByText("Monday")).then(() => {
-  //     fireEvent.click(getByText("Tuesday"));
-  //     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-  //   });
-  // });
 
   it("defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
@@ -116,7 +105,7 @@ describe("Form", () => {
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
         // 1. Render the Application.
-        const { container, debug } = render(<Application />);
+        const { container } = render(<Application />);
   
         // 2. Wait until the text "Archie Cohen" is displayed.
         await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -186,7 +175,7 @@ describe("Form", () => {
   it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
 
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
   
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
